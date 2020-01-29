@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RssPushNotification.Helper;
 using RssPushNotification.Model;
+using Serilog;
 
 namespace RssPushNotification
 {
@@ -12,6 +13,13 @@ namespace RssPushNotification
     {
         public static void Main(string[] args)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+                .Enrich.FromLogContext()
+                .WriteTo.File(@"C:\Users\fabri\AppData\Local\RssPushNotification\LogFile.txt")
+                .CreateLogger();
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -26,6 +34,7 @@ namespace RssPushNotification
                     services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
                     services.AddDbContext<RssPushNotificationContext>(options =>
                         options.UseSqlite(hostContext.Configuration.GetConnectionString("SqlLiteConnection")));
-                });
+                })
+                .UseSerilog();
     }
 }

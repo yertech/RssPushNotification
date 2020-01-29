@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RssPushNotification.Model;
 
 namespace RssPushNotification.Migrations
 {
     [DbContext(typeof(RssPushNotificationContext))]
-    partial class RssPushNotificationContextModelSnapshot : ModelSnapshot
+    [Migration("20200129063914_addCreatedDate")]
+    partial class addCreatedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

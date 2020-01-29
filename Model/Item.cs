@@ -12,5 +12,6 @@ namespace RssPushNotification.Model
         public string Categories { get; set; }
         public string Link { get; set; }
         public DateTime PublishDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

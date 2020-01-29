@@ -28,6 +28,7 @@ namespace RssPushNotification.Model
                 entity.Property(e => e.PublishDate).IsRequired().HasColumnType("datetime");
                 entity.Property(e => e.Categories);
                 entity.Property(e => e.Link).IsRequired();
+                entity.Property(e => e.CreatedDate);
             });
         }
 
