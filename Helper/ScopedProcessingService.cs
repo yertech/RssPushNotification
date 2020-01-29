@@ -82,7 +82,6 @@ namespace RssPushNotification.Helper
                         }
                     };
                     var sendtask = po.SendMessageAsync(msg, _pushOverConfigurations.User);
-                    Thread.Sleep(2000);
 
                     if (sendtask.IsFaulted)
                     {
@@ -92,6 +91,7 @@ namespace RssPushNotification.Helper
                     {
                         _logger.LogInformation($"Notification pushed for : {newItem.Id}");
                     }
+                    Thread.Sleep(2000);
                 }
 
                 //Insert new items in db
@@ -125,11 +125,12 @@ namespace RssPushNotification.Helper
                     //get the footer for upwork message
                     var footer = newItemSummary.Substring(indexOfFooter);
 
-                    text = newItemSummary.Substring(0, indexOfFooter -1).Substring(0, 1021-footer.Length);
+                    text = newItemSummary.Substring(0, indexOfFooter).Substring(0, 1021-footer.Length);
                     text += "..." + footer;
                 }
-
-                text = newItemSummary.Substring(0, 1024);
+                else{
+                    text = newItemSummary.Substring(0, 1024);
+                }
             }
 
             return text;
