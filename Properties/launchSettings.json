@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "RssPushNotification": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
