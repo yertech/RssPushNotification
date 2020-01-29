@@ -28,9 +28,10 @@ namespace RssPushNotification
                 .UseWindowsService()
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.Configure<PushOverConfigurations>(hostContext.Configuration.GetSection("PushOverConfigurations"));
+                    services.Configure<AppConfigurations>(hostContext.Configuration.GetSection("AppConfigurations"));
                     services.AddHostedService<Worker>();
                     services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
-
                     services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
                     services.AddDbContext<RssPushNotificationContext>(options =>
                         options.UseSqlite(hostContext.Configuration.GetConnectionString("SqlLiteConnection")));
