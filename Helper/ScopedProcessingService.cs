@@ -68,7 +68,7 @@ namespace RssPushNotification.Helper
                 foreach (var newItem in filteredItems)
                 {
                     newItem.CreatedDate = DateTime.Now;
-                    var msg = new Message(Sounds.Siren)
+                    var msg = new Message(Sounds.Pushover)
                     {
                         Title = newItem.Id.ToLower().Contains("freelancer") ? $"Freelancer : {newItem.Title}" : $"Upwork : {newItem.Title}",
                         Body = SubStringBody(newItem.Summary),
